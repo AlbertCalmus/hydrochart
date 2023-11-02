@@ -70,7 +70,7 @@ def main(page: ft.Page):
                             data=date,
                             icon=ft.icons.DELETE_SHARP,
                             icon_size=25,
-                            on_click=delete_chro,
+                            on_click=delete_peak,
                             icon_color="#285F9F"
                         ),
                         margin=ft.margin.only(right=15)
@@ -86,7 +86,7 @@ def main(page: ft.Page):
         list_view.controls = [ list_view_item(date, item['color']) for date, item in store.data.items() ]
         list_view.update()
 
-    def delete_chro(e):
+    def delete_peak(e):
         if len(store.data) > 1:
             del store.data[e.control.data]
             refresh_list_view()
