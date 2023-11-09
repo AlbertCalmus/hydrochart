@@ -54,10 +54,10 @@ def main(page: ft.Page):
 
     chart = MatplotlibChart(expand=True, visible=False)
 
-    def list_view_item(date: str, color: str):
+    def list_view_item(date: str, color: str, max: int):
         return ft.Row(controls=[
                     ft.Container(
-                        ft.Text(value=date),
+                        ft.Text(value=f"{date} - {int(max/1000)}m³/s"),
                             alignment=ft.alignment.center,
                             bgcolor=f"#26{color[1:]}",
                             padding=10,
@@ -83,7 +83,7 @@ def main(page: ft.Page):
         page.update()
     
     def refresh_list_view():
-        list_view.controls = [ list_view_item(date, item['color']) for date, item in store.data.items() ]
+        list_view.controls = [ list_view_item(date, item['color'], item['max']) for date, item in store.data.items() ]
         list_view.update()
 
     def delete_peak(e):
@@ -114,7 +114,7 @@ def main(page: ft.Page):
 
     def refresh_store_and_chart(chart: MatplotlibChart):
         delta = int(time_delta_input.value)
-        x = np.arange(-delta, delta, 0.025)
+        x = np.linspace(-delta, delta, num=240*delta)
 
         fig, ax = plt.subplots()
         fig.tight_layout()
@@ -166,7 +166,7 @@ def main(page: ft.Page):
         
         sorted_spaced_maxes = get_sorted_spaced_maxes(data, int(nb_floods_input.value), delta)
 
-        x = np.arange(-delta, delta, 0.025)
+        x = np.linspace(-delta, delta, num=240*delta)
         ys = []
 
         fig, ax = plt.subplots()
@@ -195,6 +195,7 @@ def main(page: ft.Page):
                 "df": chro_df[["t", "v"]],
                 "x": x,
                 "y": y,
+                "max": max(chro_df["v"]),
                 "color": row_plot.get_color()
             }
 
