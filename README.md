@@ -4,7 +4,7 @@
 
 ##### Create and activate virtual environment
 ```
-python3 -m venv venv
+python -m venv venv
 source venv/bin/activate
 ```
 
@@ -15,5 +15,5 @@ pip install -r requirements.txt
 
 ##### Run desktop application
 ```
-python3 main.py
+python main.py
 ```
