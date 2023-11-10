@@ -83,7 +83,7 @@ def main(page: ft.Page):
         page.update()
     
     def refresh_list_view():
-        list_view.controls = [ list_view_item(date, item['color'], item['max']) for date, item in store.data.items() ]
+        list_view.controls = [ list_view_item(date, item["color"], item["max"]) for date, item in store.data.items() ]
         list_view.update()
 
     def delete_peak(e):
@@ -182,7 +182,7 @@ def main(page: ft.Page):
                 continue
             
             chro_df = pd.DataFrame(data)[["t", "v"]]
-            chro_df["t"] = pd.to_datetime(chro_df["t"], format='%Y-%m-%dT%H:%M:%SZ')
+            chro_df["t"] = pd.to_datetime(chro_df["t"], format="%Y-%m-%dT%H:%M:%SZ")
             chro_df["t_norm"] = (chro_df["t"] - chro_df.loc[chro_df["v"].idxmax()]["t"]).dt.total_seconds() / (24 * 3600)
             chro_df["v_norm"] = chro_df["v"] / max(chro_df["v"])
             
@@ -191,7 +191,7 @@ def main(page: ft.Page):
 
             row_plot, = ax.plot(x, y, alpha=0.15)
 
-            store.data[peak_date.strftime('%Y-%m-%d')] = {
+            store.data[peak_date.strftime("%Y-%m-%d")] = {
                 "df": chro_df[["t", "v"]],
                 "x": x,
                 "y": y,
