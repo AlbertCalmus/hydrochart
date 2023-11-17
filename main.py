@@ -20,7 +20,7 @@ use("svg")
 
 
 def main(page: ft.Page):
-    page.title = "HydroChart v1.1.1"
+    page.title = "HydroChart v1.1.0"
     page.window_height, page.window_min_height = 800, 800
     page.window_width, page.window_min_width = 1200, 1200
 
