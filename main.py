@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+from datetime import date
 from flet.matplotlib_chart import MatplotlibChart
 from matplotlib import use
 from pathlib import Path
@@ -37,7 +38,7 @@ def main(page: ft.Page):
     )
 
     end_date_input = ft.TextField(
-        label="End date (YYYY-MM-DD)", value="2023-10-31", width=200
+        label="End date (YYYY-MM-DD)", value=date.today(), width=200
     )
 
     time_delta_input = ft.TextField(label="Time delta (in days)", value=10, width=160)
